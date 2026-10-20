@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Initial Lines" type="CompoundRunConfigurationType">
+    <toRun name="Production Line 1" type="Application" />
+    <toRun name="Production Line 2" type="Application" />
+    <toRun name="Production Line 3" type="Application" />
+    <method v="2" />
+  </configuration>
+</component>

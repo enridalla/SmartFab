@@ -1,0 +1,8 @@
+# Portable Gradle scripts and text configuration
+*.sh text eol=lf
+gradlew text eol=lf
+gradlew.bat text eol=crlf
+*.java text eol=lf
+*.proto text eol=lf
+*.kts text eol=lf
+*.md text eol=lf

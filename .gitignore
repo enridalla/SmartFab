@@ -1,0 +1,27 @@
+# Gradle output and local caches
+.gradle/
+**/build/
+out/
+
+# IntelliJ IDEA (shared .run configurations are intentionally included)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Local editor settings
+.vscode/
+
+# Operating system files
+.DS_Store
+.AppleDouble
+__MACOSX/
+Thumbs.db
+
+# Temporary files and logs
+*.log
+*.tmp
+*.swp
+*.bak
+.env
+.env.*

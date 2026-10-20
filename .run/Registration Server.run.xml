@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Registration Server" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="dps.administration.AdministrationServer" />
+    <module name="smartfab.main" />
+    <option name="PROGRAM_PARAMETERS" value="--server.port=8080" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

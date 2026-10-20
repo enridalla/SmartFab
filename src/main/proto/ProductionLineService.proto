@@ -1,0 +1,81 @@
+// Defines peer messages and RPCs for production line discovery and calibration.
+syntax = "proto3";
+package dps.productionline;
+
+// Identifies a production line and the endpoint where peers can contact it.
+message IntroductionRequest {
+  int32 id = 1;
+  string address = 2;
+  int32 port = 3;
+}
+
+// Acknowledges that an introduction was processed.
+message IntroductionResponse {
+}
+
+// Describes one request for exclusive calibration access.
+message CalibrationRequest {
+  int32 requester_id = 1;
+  double criticality = 2;
+  int64 request_number = 3;
+}
+
+// Reports whether permission was granted immediately.
+message CalibrationResponse {
+  bool granted = 1;
+}
+
+// Delivers permission that was previously deferred.
+message CalibrationGrant {
+  int32 granter_id = 1;
+  int64 requester_request_number = 2;
+}
+
+// Acknowledges receipt of a deferred grant.
+message CalibrationGrantResponse {
+}
+
+// Announces that a line no longer needs permission for this request.
+message CalibrationRelease {
+  int32 releaser_id = 1;
+  int64 releaser_request_number = 2;
+}
+
+// Acknowledges receipt of a release notice.
+message CalibrationReleaseResponse {
+}
+
+// Requests the peer's current calibration round.
+message CalibrationStatusRequest {
+}
+
+// Reports the peer's current calibration round.
+message CalibrationStatusResponse {
+  // Zero means that this line has no active calibration request.
+  int64 current_request_number = 1;
+}
+
+// Identifies a production line that is leaving the peer network.
+message LeaveRequest {
+  int32 production_line_id = 1;
+}
+
+// Acknowledges that the leaving peer was removed locally.
+message LeaveResponse {
+}
+
+// Coordinates peer discovery and distributed access to calibration.
+service ProductionLineService {
+  // Introduces a production line to a peer.
+  rpc introduce(IntroductionRequest) returns (IntroductionResponse);
+  // Requests permission to start calibration.
+  rpc requestCalibration(CalibrationRequest) returns (CalibrationResponse);
+  // Delivers permission that was deferred earlier.
+  rpc grantCalibration(CalibrationGrant) returns (CalibrationGrantResponse);
+  // Releases permission after calibration is complete.
+  rpc releaseCalibration(CalibrationRelease) returns (CalibrationReleaseResponse);
+  // Checks a peer only while its permission or release is still missing.
+  rpc getCalibrationStatus(CalibrationStatusRequest) returns (CalibrationStatusResponse);
+  // Removes a production line that is terminating in a controlled way.
+  rpc leave(LeaveRequest) returns (LeaveResponse);
+}

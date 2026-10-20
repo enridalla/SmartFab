@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Production Line 3" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="dps.productionline.ProductionLine" />
+    <module name="smartfab.main" />
+    <option name="PROGRAM_PARAMETERS" value="3 localhost 50053 localhost 8080" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
